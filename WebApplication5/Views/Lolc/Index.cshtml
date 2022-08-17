@@ -1,0 +1,92 @@
+﻿@model IEnumerable<WebApplication5.Models.Record> 
+	
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+	<div class="col-sm-4">
+		<div class="container">
+			@using (Html.BeginForm("Save","Lolc"))
+			{
+				<div class="form-group">
+					<div>
+						<label>CourseName</label>
+						<input type="text" id="course" class="form-control" name="CourseName"/>
+					</div>
+					<div>
+						<label>Fee</label>
+						<input type="text" id="Fee" class="form-control" name="Fee" />
+					</div>
+					<button type="button" class="btn btn-info" onclick="Add()">Add</button>
+				</div>
+			}
+		</div>
+	</div>
+	<div class="col-sm-8">
+		<div class="panel-body">
+			<table id="myTable" cellspacing="0" class="table table-bordered" width="100%" align="center">
+				<thead>
+					<tr>
+						<th>CorseName</th>
+						<th>Fee</th>
+						<th>Edit</th>
+						<th>Delete</th>
+						<th>Update</th>
+					</tr>
+				</thead>
+				@foreach (var item in Model)
+				{
+				<tbody >
+					<tr>
+						<td>@item.CourseName</td>
+						<td>@item.fee</td>
+						<td>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+						</td>
+						<td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
+						<td>@Html.ActionLink("Update", "Update", new { id = item.Id })</td>
+					</tr>
+					
+				</tbody>
+				}
+			</table>
+		</div>
+	</div>
+</div>
+
+@section scripts{
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('#myTable').DataTable();
+		});
+
+		function Add()
+		{
+			debugger;
+			var empObj = {
+				CourseName: $('#course').val(),
+				Fee: $('#Fee').val()
+			};
+			$.ajax({
+				url: '/Lolc/Add',
+				
+				method:  "POST",
+				
+				data: empObj,
+				success: function(response) {
+					alert("Data is Added");
+					console.log(data);
+					console.log(CourseName)
+				},
+				error: function (errormessage) {
+					alert(errormessage.responseText);
+				}
+			});  
+		}
+	</script>
+	
+	}
+
