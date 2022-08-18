@@ -26,7 +26,7 @@ namespace WebApplication5.Controllers
         {
             db.Records.Add(rec);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index1");
         }
     }
 }
