@@ -28,12 +28,10 @@ namespace WebApplication5.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        public ActionResult Update(Record rec)
+        public ActionResult Edit()
         {
-            db.Records.Add(rec);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(db);
         }
+        
     }
 }
