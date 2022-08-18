@@ -26,7 +26,14 @@ namespace WebApplication5.Controllers
         {
             db.Records.Add(rec);
             db.SaveChanges();
-            return RedirectToAction("Index1");
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Update(Record rec)
+        {
+            db.Records.Add(rec);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
